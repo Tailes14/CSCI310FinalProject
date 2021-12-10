@@ -22,7 +22,10 @@ function App() {
 
       </div>
       <div className = "infoPage">
-        
+           <div className = "landingLHS">
+              <h1 className = "landingHeader">We Want to Find <br/>Cheap Beer For You </h1>
+              <p className = "landingP">At the Cheap Canteen, we only want the cheapest and  <br/>most affordable options for our users. We show the hottest <br/> beer by known retailers and give you the cheapest options!  </p>
+            </div>
       </div>
     </div>
   );

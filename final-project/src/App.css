@@ -29,6 +29,31 @@ body {
 .infoPage{
   width: 100%;
   height: 100vh;
-  background-image: url("./image/bg.jpg")
+  background-image: url("./image/bg.jpg");
+  background-size: cover;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+
+.landingHeader{
+  color: white;
+  margin: 0vh 0vh 20vh 0vh;
+  font-size: 4vh;
+  font-weight: bold;
+
+}
+
+
+.landingP{
+  color: white;
+  margin: -15vh 0vh 0vh 0vh;
+  font-size: 1.5vh;
+  position: absolute;
+}
+
+.landingLHS{
+  margin: 13vh;
 }
 
