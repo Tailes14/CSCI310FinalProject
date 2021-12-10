@@ -2,14 +2,13 @@ import sample from './video/backgroundvid.mp4';
 import logo from './image/logo.png'
 import background from './image/bg.jpg'
 import './App.css';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {getAccessToken} from './kroger/krogerToken'
 
 
 function App() {
-  const [accessTokenK, setAccessTokenK] = useState()
   
-
+  let data = getAccessToken()
   return (
     <div className="App">
 
