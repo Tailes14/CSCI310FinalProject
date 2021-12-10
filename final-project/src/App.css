@@ -13,6 +13,8 @@ body {
 }
 .bgVideo{
   filter: brightness(75%);
+  height: 100vh;
+
 }
 
 
