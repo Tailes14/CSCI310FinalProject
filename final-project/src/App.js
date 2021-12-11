@@ -40,6 +40,7 @@ function App() {
     if (!token) {
       getToken()
     }
+    console.log(token)
   }, [])
 
   const getToken = async () => {
@@ -55,19 +56,32 @@ function App() {
     setToken(data.access_token)
   }
 
+  const handleLocation = async () => {
+    const returnValues = await fetch('https://api-ce.kroger.com/v1/locations?filter.zipCode.near=46227', {
+      method: 'GET',
+      cache: "no-cache",
+      headers: {
+        Authorization: `bearer ${token}`,
+        "Content-Type": "application/json; charset=UTF-8"
+      }
+    })
+    const data = await returnValues.json()
+    console.log(data)
+  }
+
   const handleClick = async () => {
-    const returnValues = await fetch('https://api-ce.kroger.com/v1/products?filter.term=alcohol', {
+    const returnValues = await fetch('https://api-ce.kroger.com/v1/products?filter.term=alcohol&filter.locationId=01400943', {
       method : 'GET',
       headers: {
         'Accept': 'application/json',
         'Authorization' : 'Bearer ' + token
       }
-    })
+    }).catch((err) => console.log(err))
     const data = await returnValues.json()
+    console.log(data)
     setResults(data)
-    console.log(results)
   }
-
+  
   return (
     <div className="App">
 
