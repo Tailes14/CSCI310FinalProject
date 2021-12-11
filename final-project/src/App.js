@@ -24,6 +24,7 @@ async function getProductKroger(term, setResults)
 
 
 function App() {
+  /*
   const [results, setResults] = useState()
   const handleClick = () => {
     let temp = getProductKroger('beer', setResults).then(result => {
@@ -31,6 +32,42 @@ function App() {
     })
     console.log(results)
   }
+  */
+  const [token, setToken] = useState('')
+  const [results, setResults] = useState('')
+
+  useEffect(() => {
+    if (!token) {
+      getToken()
+    }
+  }, [])
+
+  const getToken = async () => {
+    const tokenResponse = await fetch('https://api-ce.kroger.com/v1/connect/oauth2/token', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic ZmluYWwtcHJvamVjdC02OTIxYjNhYWE0MDNmYTQxZmY3N2EzMWI5OWMzYWY3MzQ5ODQ2MDI5NzU2NDU3NjQyMjM6OEk3bzZyN0gtQVNhd21KempDS0dkUW05N05CZzd2RzlxRC1pUURyMg=='
+      },
+      body: 'grant_type=client_credentials&scope=product.compact'
+    })
+    const data = await tokenResponse.json()
+    setToken(data.access_token)
+  }
+
+  const handleClick = async () => {
+    const returnValues = await fetch('https://api-ce.kroger.com/v1/products?filter.term=alcohol', {
+      method : 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization' : 'Bearer ' + token
+      }
+    })
+    const data = await returnValues.json()
+    setResults(data)
+    console.log(results)
+  }
+
   return (
     <div className="App">
 
